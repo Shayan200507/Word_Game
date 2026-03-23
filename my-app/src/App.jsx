@@ -10,9 +10,22 @@ function App() {
 
   const [Word, setWord] = useState("REACT")
   const [letters, setLetters] = useState([])
+
+  const wrongguesses = letters.filter((Element) => {if (Word.includes(Element.toUpperCase())) return true})
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   const arrWord = Word.split("")
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
   const arrAlphabet = alphabet.split("")
+  console.log(letters)
   
 
   function handleKeyboardeClick(letter){
@@ -29,7 +42,7 @@ function App() {
   }
 
   const displayArray = languages.map((langauge) => { return <span key={nanoid()}  style={{ backgroundColor : langauge.backgroundColor, color : langauge.color}}   className='langBlock'>{langauge.name}</span>})
-  const displayArrWord = arrWord.map((letter) =>(<span key={nanoid()}  className='letterBox'>{letter}</span> ))
+  const displayArrWord = arrWord.map((letter) =>(<span key={nanoid()}  className='letterBox'>{letters.includes(letter.toLowerCase()) ?letter : ""}</span> ))
   const  displayArrAlphabet = arrAlphabet.map((letter) =>(<button key={nanoid()} onClick={() => handleKeyboardeClick(letter)}  className={clsx('alphaButton',{
      correct: letters.includes(letter) && arrWord.includes(letter.toUpperCase()),
     incorrect: letters.includes(letter) && !arrWord.includes(letter.toUpperCase())
