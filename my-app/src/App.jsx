@@ -11,8 +11,8 @@ function App() {
   const [Word, setWord] = useState("REACT")
   const [letters, setLetters] = useState([])
 
-  const wrongguesses = letters.filter((Element) => {if (Word.includes(Element.toUpperCase())) return true})
- 
+  const wrongguesses = letters.filter((Element) => {  return (!Word.includes(Element.toUpperCase())) }).length
+  const isGameOver = wrongguesses === languages.length-1
  
  
  
@@ -41,7 +41,7 @@ function App() {
 
   }
 
-  const displayArray = languages.map((langauge) => { return <span key={nanoid()}  style={{ backgroundColor : langauge.backgroundColor, color : langauge.color}}   className='langBlock'>{langauge.name}</span>})
+  const displayArray = languages.map((langauge,index) => { return <span key={index}  style={{ backgroundColor : langauge.backgroundColor, color : langauge.color}}   className= { clsx('langBlock',{ lostLang : index < wrongguesses})}>{langauge.name}</span>})
   const displayArrWord = arrWord.map((letter) =>(<span key={nanoid()}  className='letterBox'>{letters.includes(letter.toLowerCase()) ?letter : ""}</span> ))
   const  displayArrAlphabet = arrAlphabet.map((letter) =>(<button key={nanoid()} onClick={() => handleKeyboardeClick(letter)}  className={clsx('alphaButton',{
      correct: letters.includes(letter) && arrWord.includes(letter.toUpperCase()),
@@ -70,7 +70,7 @@ function App() {
            <div className='langContainer'>{displayArray}</div>
            <div className="wordContainer">{displayArrWord}</div>
            <div className='keyBoard'>{displayArrAlphabet}</div>
-           <div className='newGame'><button>New Game</button></div>
+           {isGameOver && <div className='newGame'><button>New Game</button></div>}
      
     </>
   )
