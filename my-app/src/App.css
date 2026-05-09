@@ -50,6 +50,7 @@ body {
   padding: 8px;
   text-align: center;
    min-height: 60px;
+   justify-content: center ;
 }
 
 .StatCard > h1 { 
@@ -69,6 +70,15 @@ body {
 
 .StatCard.loseCard {
   background-color: red;
+}
+
+.StatCard.lang{
+    justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+ 
+  
+  color: white;
+  min-height: 60px;
 }
 
 
